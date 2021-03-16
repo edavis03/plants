@@ -11,5 +11,4 @@ public class PlantService {
     public List<Plant> getAll() {
         return new ArrayList<Plant>();
     }
-
 }

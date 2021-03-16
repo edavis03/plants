@@ -1,5 +1,6 @@
 package plantappTests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import plantapp.PlantService;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -21,10 +23,10 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMockMvc
 public class PlantControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new PlantController()).build();;
-
     private PlantService mockPlantService = Mockito.mock(PlantService.class);
+
+    @Autowired
+    private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new PlantController(mockPlantService)).build();;
 
     @Test
     void getPlants() throws Exception {
@@ -33,9 +35,10 @@ public class PlantControllerTest {
         plantsToReturn.add(new Plant("fir tree"));
         when(mockPlantService.getAll()).thenReturn(plantsToReturn);
 
-        MvcResult result = (MvcResult) this.mockMvc.perform(get("/plants"))
-               .andExpect(status().isOk());
+        MvcResult result = this.mockMvc.perform(get("/plants"))
+                .andExpect(status().isOk())
+                .andReturn();
 
-        System.out.println(result);
+        assertEquals("[{\"name\":\"ivy\"},{\"name\":\"fir tree\"}]", result.getResponse().getContentAsString());
     }
 }

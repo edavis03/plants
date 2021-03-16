@@ -11,9 +11,15 @@ import java.util.List;
 
 @RestController
 public class PlantController {
+    private PlantService plantService;
 
-//    @RequestMapping("/plants")
-//    public ResponseEntity<List<Plant>> getPlants() {
-//        return new ResponseEntity<List<Plant>>(new ArrayList<Plant>(), HttpStatus.OK);
-//    }
+    public PlantController(PlantService service){
+        this.plantService = service;
+    }
+
+    @RequestMapping("/plants")
+    public ResponseEntity<List<Plant>> getPlants() {
+        List<Plant> plantList = plantService.getAll();
+        return new ResponseEntity<List<Plant>>(plantList, HttpStatus.OK);
+    }
 }
