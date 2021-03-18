@@ -1,0 +1,3 @@
+1) For my integration test class, why did I have go instantiate my mockMvc inside
+the test instead of autowiring at the class level like i was able to in
+my controller test class?  Maybe something to do with order of bean creation?

@@ -1,6 +1,5 @@
 package plantappTests;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.Mockito.when;
 
 @AutoConfigureMockMvc
-public class PlantControllerTest {
+public class PlantControllerTests {
 
     private PlantService mockPlantService = Mockito.mock(PlantService.class);
 
