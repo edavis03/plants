@@ -13,11 +13,10 @@ import plantapp.PlantService;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
 public class PlantControllerTests {
@@ -37,7 +36,9 @@ public class PlantControllerTests {
         MvcResult result = this.mockMvc.perform(get("/plants"))
                 .andExpect(status().isOk())
                 .andReturn();
+        String data = result.getResponse().getContentAsString();
 
-        assertEquals("[{\"name\":\"ivy\"},{\"name\":\"fir tree\"}]", result.getResponse().getContentAsString());
+        assertTrue(data.contains("\"name\":\"ivy\""));
+        assertTrue(data.contains("\"name\":\"fir tree\""));
     }
 }

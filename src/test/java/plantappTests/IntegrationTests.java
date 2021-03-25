@@ -25,7 +25,7 @@ class IntegrationTests {
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(plantController).build();
         MvcResult result = mockMvc.perform(get("/plants")).andReturn();
 
-        assertEquals("{\"name\":\"snap\",\"name\":\"crackle\",\"name:\":\"pop\"}", result.getResponse().getContentAsString());
+        assertEquals("[{\"id\":1,\"name\":\"snap\"},{\"id\":2,\"name\":\"crackle\"},{\"id\":3,\"name\":\"pop\"}]", result.getResponse().getContentAsString());
     }
 }
 
