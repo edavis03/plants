@@ -1,3 +1,7 @@
 1) For my integration test class, why did I have go instantiate my mockMvc inside
 the test instead of autowiring at the class level like i was able to in
 my controller test class?  Maybe something to do with order of bean creation?
+
+2) My tests talk to the testdb that is running locally in docker.  I had to manually spin up this docker image
+and then manually insert each needed row entry.  Is there a way to make initial db configuration (i.e.
+setting password, creating db, entering test rows) automated?
