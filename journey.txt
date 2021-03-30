@@ -1,0 +1,7 @@
+3/16/21
+Trying to drive out the getplants endpoint --
+I wrote a unit test for the controller and mocked the service, but all that did was make
+me delegate to a service that wasn't even implemented.  So now I have a passing test, but no
+functionality.  AND NOTHING IS FORCING ME TO DRIVE OUT THE SERVICE. This makes me think I
+need to have an integration test that will consistently fail until every layer (controller,
+service, and repo) is implemented.  But I don't know what this integration test would look like.

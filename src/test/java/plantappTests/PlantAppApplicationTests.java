@@ -1,9 +1,10 @@
-package plantapp;
+package plantappTests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import plantapp.PlantAppApplication;
 
-@SpringBootTest
+@SpringBootTest(classes={PlantAppApplication.class})
 class PlantAppApplicationTests {
 
 	@Test
