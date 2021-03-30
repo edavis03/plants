@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App', () => {
+
+    it('displays a plant collection', () => {
+        const { queryByTestId } = render(<App/>);
+        console.log(queryByTestId);
+        expect(queryByTestId('plant-collection')).toBeTruthy(); //I kind of hate this
+    });
 });
