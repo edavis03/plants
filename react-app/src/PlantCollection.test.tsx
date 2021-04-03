@@ -1,9 +1,22 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { act } from "react-dom/test-utils";
+import axios from 'axios';
+import PlantCollection from './PlantCollection'
+
+jest.mock('axios');
 
 describe('PlantCollection', () => {
-    it('displays the names of the plants in the collection', () => {
-        // feels like here is where i'd want to mock the data coming from the server
-        expect(true).toBe(false);
+    it('displays the names of the plants in the collection', async () => {
+
+        const res = {data: [{"name":"violet"}, {"name":"aloe"}]};
+        axios.get.mockResolvedValue(res);
+
+        await act(async () => {
+            render(<PlantCollection/>);
+        })
+
+        screen.getByText("violet");
+        screen.getByText("aloe");
     });
 });

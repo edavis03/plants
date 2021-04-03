@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import PlantCollection from './PlantCollection';
 
 function App() {
   return (
-    <div className="App">
-        <div data-testid='plant-collection' />
+    <div className='App'>
+        <PlantCollection />
     </div>
   );
 }
