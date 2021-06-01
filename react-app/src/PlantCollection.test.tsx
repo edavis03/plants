@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { act } from "react-dom/test-utils";
-import axios from 'axios';
+import { act } from 'react-dom/test-utils';
 import PlantCollection from './PlantCollection'
+import { getPlants } from './PlantClient'
 
-jest.mock('axios');
+jest.mock('./PlantClient');
 
 describe('PlantCollection', () => {
     it('displays the names of the plants in the collection', async () => {
 
-        const res = {data: [{"name":"violet"}, {"name":"aloe"}]};
-        axios.get.mockResolvedValue(res);
+        const plants = [{"name":"violet"}, {"name":"aloe"}];
+        getPlants.mockResolvedValue(plants);
 
         await act(async () => {
             render(<PlantCollection/>);
