@@ -9,8 +9,7 @@ const PlantCollection = () => {
 
     React.useEffect(() => {
         const fetchData = async () => {
-            const res = await getPlants();
-            const fetchedPlants = res.map((d: any) => ({ name: d.name }));
+            const fetchedPlants = await getPlants();
             await setPlantList(fetchedPlants);
         }
         fetchData();
